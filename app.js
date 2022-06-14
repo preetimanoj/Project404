@@ -37,3 +37,7 @@ function download_csv_file(csvFileData) {
     let url = "login.html";
     window.location.assign(url);
 }
+
+$('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })
