@@ -48,6 +48,12 @@ function modalNew(){
 }
 
 
+function cancelTask(){
+    let url = "admin.html";
+    window.location.assign(url);
+   
+}
+
 var i=1;
 
 function saveTaskToFile() {
@@ -58,7 +64,8 @@ function saveTaskToFile() {
     const tend = document.getElementById('tend');
     const tid = ++i;
     const thrs = 0;
-    let csvFileData = [[tid, tname.value, tdesc.value, temail.value, tstart.value, tend.value, thrs]];
+    const tstatus = "started"
+    let csvFileData = [[tid, tname.value, tdesc.value, temail.value, tstart.value, tend.value, thrs, tstatus]];
 
     // console.log("data----", data)
     download_csv_task_file(csvFileData)
@@ -66,7 +73,7 @@ function saveTaskToFile() {
 
 function download_csv_task_file(csvFileData) {
     console.log(csvFileData)
-    var csv = 'Id,Task Name,Desciption,Email,Start Date,End Date, Hours\n';
+    var csv = 'Id,Task Name,Desciption,Email,Start Date,End Date, Hours, Status\n';
     csvFileData.forEach(function (row) {
         csv += row.join(',');
         csv += "\n";

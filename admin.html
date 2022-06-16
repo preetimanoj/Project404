@@ -10,94 +10,159 @@
 </head>
 
 <body>
+    <div>
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100 mt-4">
-            <div class="mt-3 col-12 col-md-9 col-lg-7 col-xl-6">
 
+            <div class="ml-1 row col-12">
+                <h1 class="col-6" style="font-size: 20px;">Hello Admin, Here are your Members and Tasks</h1>
+                <div class="col-6" style="text-align: right;">
 
-                <div class="ml-1 row col-12">
-                    <div class="col-6" style="font-size: 12px;">Hello Admin, Here are your Members</div>
-                    <div class="col-6" style="text-align: right;">
-
-                        <!-- nav to modal -->
-                         <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal" onClick="modalNew()"> Create new
-                        Task</button>
-                    </div>
-                    <br><br>
+                    <!-- nav to modal -->
+                     <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal" onClick="modalNew()"> Create new
+                    Task</button>
                 </div>
-                
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Member name test</th>
-                            <th scope="col">Designation</th>
-                            <th scope="col">Task Assigned</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Total Pay</th>
-                            <th scope="col">Action</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Merlin</td>
-                            <td>Frontend Engineer</td>
-                            <td>Integrate the table</td>
-                            <td style="color: green;">Finished</td>
-                            <td>$52.5</td>
-                            <td><button class="btn btn-sm btn-warning">Pay</button></td>
-                        </tr>
-
-
-                    </tbody>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Merlin</td>
-                            <td>Frontend Engineer</td>
-                            <td>Integrate the table</td>
-                            <td style="color: green;">Pending</td>
-                            <td>$52.5</td>
-                            <td><button class="btn btn-sm btn-warning">Pay</button></td>
-                        </tr>
-
-
-                    </tbody>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Anandu</td>
-                            <td>Frontend Engineer</td>
-                            <td>Integrate the table</td>
-                            <td style="color: green;">Finished</td>
-                            <td>$52.5</td>
-                            <td><button class="btn btn-sm btn-warning">Pay</button></td>
-                        </tr>
-
-
-                    </tbody>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Preeti</td>
-                            <td>Frontend Engineer</td>
-                            <td>Integrate the table</td>
-                            <td style="color: green;">Finished</td>
-                            <td>$52.5</td>
-                            <td><button class="btn btn-sm btn-warning">Pay</button></td>
-                        </tr>
-
-
-                    </tbody>
-                </table>
+                <br><br>
             </div>
+            
         </div>
 
     </div>
 
+    <div class="adminBody">
+
+            
+            
+        <div class="">
+
+
+           
+            <h1 class="col-6" style="font-size: 16px;"> Members</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Member Name</th>
+                        <th scope="col">Designation</th>
+                        <th scope="col">Task Assigned</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Total Pay</th>
+                        <th scope="col">Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Merlin</td>
+                        <td>Frontend Engineer</td>
+                        <td>Integrate the table</td>
+                        <td style="color: green;">Finished</td>
+                        <td>$52.5</td>
+                        <td><button class="btn btn-sm btn-warning">Pay</button></td>
+                    </tr>
+
+
+                </tbody>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Merlin</td>
+                        <td>Frontend Engineer</td>
+                        <td>Integrate the table</td>
+                        <td style="color: green;">Pending</td>
+                        <td>$52.5</td>
+                        <td><button class="btn btn-sm btn-warning">Pay</button></td>
+                    </tr>
+
+
+                </tbody>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Anandu</td>
+                        <td>Frontend Engineer</td>
+                        <td>Integrate the table</td>
+                        <td style="color: green;">Finished</td>
+                        <td>$52.5</td>
+                        <td><button class="btn btn-sm btn-warning">Pay</button></td>
+                    </tr>
+
+
+                </tbody>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Preeti</td>
+                        <td>Frontend Engineer</td>
+                        <td>Integrate the table</td>
+                        <td style="color: green;">Finished</td>
+                        <td>$52.5</td>
+                        <td><button class="btn btn-sm btn-warning">Pay</button></td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+         <div class="">
+
+
+            <h1 class="col-6" style="font-size: 16px;"> Tasks</h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Task name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Hours</th>
+                        <th scope="col">Pay</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>UI Integration</td>
+                        <td>Integrate the table</td>
+                        <td>5</td>
+                        <td>12.4</td>
+                        <td><button class="btn btn-sm btn-warning">Finish</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>UI Integration</td>
+                        <td>Integrate the table</td>
+                        <td>5</td>
+                        <td>12.4</td>
+                        <td><button class="btn btn-sm btn-warning">Finish</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>UI Integration</td>
+                        <td>Integrate the table</td>
+                        <td>5</td>
+                        <td>12.4</td>
+                        <td><button class="btn btn-sm btn-warning">Finish</button></td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+            
+        </div>
+    </div>
+
+
+
+</div>
+    </body>
+</body>
     <script src="app.js"></script>
 </body>
 

@@ -12,3 +12,14 @@
        display: block;
        opacity: unset;
    } 
+
+   .adminBody{
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 100px;
+
+   }
+
+   .table{
+       border: solid;
+   }
