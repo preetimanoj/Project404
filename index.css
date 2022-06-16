@@ -4,3 +4,11 @@
     }
     
     }
+
+
+   #exampleModal{
+       top: 70px;
+       padding-top: 25px;
+       display: block;
+       opacity: unset;
+   } 

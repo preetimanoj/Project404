@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create New Task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="tname">Task Name</label>
+                        <input type="text" class="form-control" id="tname" placeholder="Title Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="tdesc">Task Description</label>
+                        <textarea class="form-control" id="tdesc" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="temail">Assign Member</label>
+                        <input type="email" class="form-control" id="temail" placeholder="name@example.com">
+                        </div>
+                    
+                    <div class="form-group">
+                        <label for="tstart">Start Date </label>
+                        <input type="date" class="form-control" id="tstart" placeholder="Title Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="tend">End Date</label>
+                        <input type="date" class="form-control" id="tend" placeholder="Title Name">
+                    </div>
+                    </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveTaskToFile()">Save Task</button>
+            </div>
+            </div>
+        </div>
+        </div>
+        <!-- <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal" onClick="modalNew()"> Create new
+        Task</button> -->
+
+
+        <script src="app.js"></script> 
+                                         
+    </body>
+</html>
