@@ -42,10 +42,9 @@ function download_csv_file(csvFileData) {
 
 // new modal - admin side
 function modalNew(){
-    document.getElementById("exampleModal").style.display = "block"
-    document.getElementById("exampleModal").style.opacity = "unset"
     let url = "modal.html";
     window.location.assign(url);
+   
 }
 
 
