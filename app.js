@@ -1,3 +1,5 @@
+let taskStatus = 0;
+
 function redirectToLogin() {
     let url = "login.html";
     window.location.assign(url);
@@ -41,10 +43,10 @@ function download_csv_file(csvFileData) {
 
 
 // new modal - admin side
-function modalNew(){
+function modalNew() {
     let url = "modal.html";
     window.location.assign(url);
-   
+
 }
 
 
@@ -95,3 +97,19 @@ function download_csv_task_file(csvFileData) {
 // $('#exampleModal').on('shown.bs.modal', function () {
 //     $('#myInput').trigger('focus')
 //   })
+
+
+
+//change status
+function changeStatus() {
+    const statusBtn = document.getElementById("status");
+    if (statusBtn.innerHTML == "Finish") {
+        statusBtn.innerHTML = "Done";
+        statusBtn.style.background = "#6c757d";
+        taskStatus = 2;
+    } else {
+        statusBtn.innerHTML = "Finish";
+        statusBtn.style.background = "#28a745";
+        taskStatus = 1;
+    }
+}
