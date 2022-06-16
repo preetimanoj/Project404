@@ -35,7 +35,9 @@
 
                                     <div class="d-flex justify-content-center">
                                         <button type="button"
-                                            class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Login</button>
+                                                onclick="signIn(document.getElementById('loginEmail').value, document.getElementById('loginPassword').value)"
+                                            class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
+                                            Login</button>
                                     </div>
 
                                     <div class="text-center text-muted mt-4">New to platform?
@@ -56,7 +58,12 @@
 
     </section>
 
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script src="firebaseOperations.js"></script>
+    <script src="login.js"></script>
     <script src="app.js"></script>
+
+
 </body>
 
 </html>
