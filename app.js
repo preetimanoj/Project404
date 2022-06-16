@@ -41,7 +41,7 @@ function download_csv_file(csvFileData) {
 
 
 // new modal - admin side
-function modalNew(){
+function modalNew() {
     document.getElementById("exampleModal").style.display = "block"
     document.getElementById("exampleModal").style.opacity = "unset"
     let url = "modal.html";
@@ -49,7 +49,7 @@ function modalNew(){
 }
 
 
-var i=1;
+var i = 1;
 
 function saveTaskToFile() {
     const tname = document.getElementById('tname');
@@ -89,3 +89,5 @@ function download_csv_task_file(csvFileData) {
 // $('#exampleModal').on('shown.bs.modal', function () {
 //     $('#myInput').trigger('focus')
 //   })
+
+
