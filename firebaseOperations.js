@@ -24,9 +24,9 @@ function addData(databaseName, jsonObjData) {
             console.error("Error adding document: ", error);
         });
 }
-let task = { emailid: "memeber2@gmail.com", lastName: "Doe", age: 50, eyeColor: "blue" };
+let task = { emailid: "memeber2@gmail.com", name: "asd", desc: "asdfsdfsdfs jlkj jkl l", hrs: "5", tpay:"1232", action:"0" };
 
-// addData("AdminData", task)
+addData("AdminData", task)
 
 
 function readData(databaseName) {
