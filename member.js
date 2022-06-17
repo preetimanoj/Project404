@@ -12,6 +12,20 @@ function memberReadData(databaseName, email) {
     });
 }
 
+function changeStatus() {
+    const statusBtn = document.getElementById("status");
+    if (statusBtn.innerHTML == "Finish") {
+        statusBtn.innerHTML = "Done";
+        statusBtn.style.background = "#6c757d";
+        taskStatus = 2;
+    } else {
+        statusBtn.innerHTML = "Finish";
+        statusBtn.style.background = "#28a745";
+        taskStatus = 1;
+    }
+}
+
+
 function fetchCompleted(objlist) {
     console.log(objlist[0].emailid)
     var col = ['name', 'desc', 'emailid', 'hrs', 'tpay', 'action'];
@@ -32,7 +46,29 @@ function fetchCompleted(objlist) {
 
         for (var j = 0; j < col.length; j++) {
             var tabCell = tr.insertCell(-1);
-            tabCell.innerHTML = objlist[i][col[j]];
+          
+            if(j==5){
+                var buttonStat = document.createElement("button");
+                
+                if(objlist[i][col[j]] == 0){
+                    buttonStat.innerHTML = "Start"
+                    buttonStat.onclick = function(){buttonStat.innerHTML = "In Progress"};
+                }
+                if(objlist[i][col[j]] == 1){
+                    buttonStat.innerHTML = "In Progress"
+                    buttonStat.onclick = function(){buttonStat.innerHTML = "Finish"};
+                }
+                if(objlist[i][col[j]] == 2){
+                    buttonStat.innerHTML = "Finish"
+                    buttonStat.disabled ="true"
+                    
+                }
+             
+                tabCell.appendChild(buttonStat) ;
+            }else{
+                tabCell.innerHTML = objlist[i][col[j]];
+            }
+           
         }
     }
 
