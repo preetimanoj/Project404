@@ -25,10 +25,12 @@ function changeStatus() {
     }
 }
 
-
+// var buttonStat = document.createElement("button"); //button
 function fetchCompleted(objlist) {
     console.log(objlist[0].emailid)
     var col = ['name', 'desc', 'emailid', 'hrs', 'tpay', 'action'];
+
+    
 
     var table = document.createElement("table");
     table.classList.add("table");
@@ -52,19 +54,21 @@ function fetchCompleted(objlist) {
                 
                 if(objlist[i][col[j]] == 0){
                     buttonStat.innerHTML = "Start"
-                    buttonStat.onclick = function(){buttonStat.innerHTML = "In Progress"};
+                    buttonStat.onclick = function(){console.log("btn "+i)};
                 }
                 if(objlist[i][col[j]] == 1){
                     buttonStat.innerHTML = "In Progress"
-                    buttonStat.onclick = function(){buttonStat.innerHTML = "Finish"};
+                    // buttonStat.onclick = function(){buttonStat.innerHTML = "Finish"};
                 }
                 if(objlist[i][col[j]] == 2){
                     buttonStat.innerHTML = "Finish"
                     buttonStat.disabled ="true"
                     
                 }
-             
+                console.log(buttonStat)
                 tabCell.appendChild(buttonStat) ;
+                console.log(tabCell)
+                buttonStat = null
             }else{
                 tabCell.innerHTML = objlist[i][col[j]];
             }
