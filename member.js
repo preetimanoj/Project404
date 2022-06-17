@@ -12,16 +12,10 @@ function memberReadData(databaseName, email) {
     });
 }
 
-function fetchCompleted(objlist){
+function fetchCompleted(objlist) {
     console.log(objlist[0].emailid)
-    var col = [];
-        for (var i = 0; i < objlist.length; i++) {
-            for (var key in objlist[i]) {
-                if (col.indexOf(key) === -1) {
-                    col.push(key);
-                }
-            }
-        }
+    var col = ['name', 'desc', 'emailid', 'hrs', 'tpay', 'action'];
+
     var table = document.createElement("table");
     table.classList.add("table");
     var tr = table.insertRow(-1);                   // TABLE ROW.
