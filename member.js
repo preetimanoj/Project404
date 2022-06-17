@@ -23,6 +23,7 @@ function fetchCompleted(objlist){
             }
         }
     var table = document.createElement("table");
+    table.classList.add("table");
     var tr = table.insertRow(-1);                   // TABLE ROW.
 
     for (var i = 0; i < col.length; i++) {

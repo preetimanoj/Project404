@@ -20,6 +20,10 @@
 
    }
 
-   .table{
+   .memberBody{
+    margin: 30px 100px;
+   }
+
+   table{
        border: solid;
    }
