@@ -1,5 +1,7 @@
 //Create new user
-function createUser(email, password) {
+function createUser() {
+    let email = document.getElementById('registerEmail').value;
+    let password = document.getElementById('registerPassword').value;
     console.log("create----", email, password)
     firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
         user = userCredential.user;
@@ -9,4 +11,9 @@ function createUser(email, password) {
         .catch((error) => {
            console.log("Error: ", error)
         });
+}
+
+function redirectToLogin() {
+    let url = "login.html";
+    window.location.assign(url);
 }
