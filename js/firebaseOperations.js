@@ -12,7 +12,6 @@ const databaseName = "AdminData"
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
-var user = null;
 
 const db = firebase.firestore();
 
@@ -25,10 +24,9 @@ function addData(databaseName, jsonObjData) {
             console.error("Error adding document: ", error);
         });
 }
-let task = { emailid: "memeber2@gmail.com", name: "asd", desc: "asdfsdfsdfs jlkj jkl l", hrs: "5", tpay: "1232", action: "0" };
+//let task = { emailid: "memeber2@gmail.com", name: "asd", desc: "asdfsdfsdfs jlkj jkl l", hrs: "5", tpay: "1232", action: "0" };
 
 // addData("AdminData", task)
-
 
 function updateData(columnName, value, actionid) {
     db.collection(databaseName).get().then((querySnapshot) => {
@@ -47,8 +45,6 @@ function updateData(columnName, value, actionid) {
     });
 }
 
-// updateData("emailid", "member102@gmail.com", 6)
-
 function readData(databaseName) {
     db.collection(databaseName).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -56,4 +52,51 @@ function readData(databaseName) {
         });
     });
 
+}
+
+function redirectBasedOnRole(email) {
+    db.collection("UserDatabase").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log("for doc id " + doc.id + " email id " + doc.data().emailid + " value:" + email);
+            if (String(doc.data().emailid) == String(email)) {
+                console.log("logged in doc id " + doc.id);
+
+
+                let docRef = db.collection("UserDatabase").doc(doc.id);
+
+                docRef.get().then((doc) => {
+                    if (doc.exists) {
+                        console.log("Document data:", doc.data().role);
+                        if (doc.data().role == "admin") {
+                            console.log("admin")
+                            window.location.assign('admin.html');
+                        } else {
+                            console.log("member")
+                            window.location.assign('member.html');
+                        }
+                    } else {
+                        // doc.data() will be undefined in this case
+                        console.log("No such document!");
+                    }
+                }).catch((error) => {
+                    console.log("Error getting document:", error);
+                });
+
+                return
+            } else {
+                console.log("didnt find role");
+            }
+        });
+    });
+
+}
+
+function signOut() {
+    firebase.auth().signOut().then(function () {
+        // Sign-out successful.
+        let url = "login.html";
+        window.location.assign(url);
+    }, function (error) {
+        Alert("Error logging out " + error)  // An error happened.
+    });
 }

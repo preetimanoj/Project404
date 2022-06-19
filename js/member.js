@@ -1,9 +1,9 @@
 
 function memberReadData(databaseName, email) {
-    var objlist = []
+    let objlist = []
     db.collection(databaseName).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            console.log(doc.data())
+            //            console.log(doc.data())
             if (doc.data().emailid === email) {
                 objlist.push(doc.data())
             }
@@ -27,59 +27,71 @@ function changeStatus() {
 
 // var buttonStat = document.createElement("button"); //button
 function fetchCompleted(objlist) {
-    console.log(objlist[0].emailid)
-    var col = ['name', 'desc', 'emailid', 'hrs', 'tpay', 'action'];
+    let col = ['name', 'desc', 'emailid', 'hrs', 'tpay', 'action'];
 
-    
-
-    var table = document.createElement("table");
+    let table = document.createElement("table");
     table.classList.add("table");
-    var tr = table.insertRow(-1);                   // TABLE ROW.
+    let tr = table.insertRow(-1);                   // TABLE ROW.
 
-    for (var i = 0; i < col.length; i++) {
-        var th = document.createElement("th");      // TABLE HEADER.
+    for (let i = 0; i < col.length; i++) {
+        let th = document.createElement("th");      // TABLE HEADER.
         th.innerHTML = col[i];
         tr.appendChild(th);
     }
 
-    for (var i = 0; i < objlist.length; i++) {
+    for (let i = 0; i < objlist.length; i++) {
 
         tr = table.insertRow(-1);
 
-        for (var j = 0; j < col.length; j++) {
-            var tabCell = tr.insertCell(-1);
-          
-            if(j==5){
-                var buttonStat = document.createElement("button");
-                
-                if(objlist[i][col[j]] == 0){
+        for (let j = 0; j < col.length; j++) {
+            let tabCell = tr.insertCell(-1);
+
+            if (j == 5) {
+                let buttonStat = document.createElement("button");
+
+                if (objlist[i][col[j]] == 0) {
                     buttonStat.innerHTML = "Start"
-                    buttonStat.onclick = function(){console.log("btn "+i)};
+                    buttonStat.onclick = function () { console.log("btn " + i) };
                 }
-                if(objlist[i][col[j]] == 1){
+                if (objlist[i][col[j]] == 1) {
                     buttonStat.innerHTML = "In Progress"
                     // buttonStat.onclick = function(){buttonStat.innerHTML = "Finish"};
                 }
-                if(objlist[i][col[j]] == 2){
+                if (objlist[i][col[j]] == 2) {
                     buttonStat.innerHTML = "Finish"
-                    buttonStat.disabled ="true"
-                    
+                    buttonStat.disabled = "true"
+
                 }
                 console.log(buttonStat)
-                tabCell.appendChild(buttonStat) ;
+                tabCell.appendChild(buttonStat);
                 console.log(tabCell)
                 buttonStat = null
-            }else{
+            } else {
                 tabCell.innerHTML = objlist[i][col[j]];
             }
-           
+
         }
     }
 
-    var divContainer = document.getElementById("showData");
+    let divContainer = document.getElementById("showData");
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
 
 }
 
-memberReadData("AdminData", "memeber2@gmail.com")
+
+firebase.auth().onAuthStateChanged((currentUser) => {
+    if (currentUser) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        console.log(currentUser.email)
+        memberReadData(databaseName, currentUser.email)
+
+    } else {
+        console.log("User is signed out");
+        let url = "login.html";
+        window.location.assign(url);
+    }
+});
+
+//memberReadData(databaseName, "memeber2@gmail.com")
