@@ -13,19 +13,19 @@ function cancelTask() {
 
 }
 
-//change status
-function changeStatus() {
-    const statusBtn = document.getElementById("status");
-    if (statusBtn.innerHTML == "Finish") {
-        statusBtn.innerHTML = "Done";
-        statusBtn.style.background = "#6c757d";
-        taskStatus = 2;
-    } else {
-        statusBtn.innerHTML = "Finish";
-        statusBtn.style.background = "#28a745";
-        taskStatus = 1;
-    }
-}
+// //change status
+// function changeStatus() {
+//     const statusBtn = document.getElementById("status");
+//     if (statusBtn.innerHTML == "Finish") {
+//         statusBtn.innerHTML = "Done";
+//         statusBtn.style.background = "#6c757d";
+//         taskStatus = 2;
+//     } else {
+//         statusBtn.innerHTML = "Finish";
+//         statusBtn.style.background = "#28a745";
+//         taskStatus = 1;
+//     }
+// }
 
 
 function memberReadData(databaseName, email) {
@@ -33,10 +33,11 @@ function memberReadData(databaseName, email) {
     db.collection(databaseName).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             //            console.log(doc.data())
-            if (doc.data().emailid === email) {
+            // if (doc.data().emailid === email) {
                 objlist.push(doc.data())
-            }
+            // }
         });
+        console.log("objlist",objlist)
         fetchCompleted(objlist);
     });
 }
@@ -45,6 +46,7 @@ function memberReadData(databaseName, email) {
 // var buttonStat = document.createElement("button"); //button
 function fetchCompleted(objlist) {
     let col = ['name', 'desc', 'emailid', 'hrs', 'tpay', 'action'];
+    let colName = ['Task Name', 'Description', 'User Email', 'Hours Worked', '  Total Pay', 'Status'];
 
     let table = document.createElement("table");
     table.classList.add("table");
@@ -52,7 +54,7 @@ function fetchCompleted(objlist) {
 
     for (let i = 0; i < col.length; i++) {
         let th = document.createElement("th");      // TABLE HEADER.
-        th.innerHTML = col[i];
+        th.innerHTML = colName[i];
         tr.appendChild(th);
     }
 
@@ -62,27 +64,34 @@ function fetchCompleted(objlist) {
 
         for (let j = 0; j < col.length; j++) {
             let tabCell = tr.insertCell(-1);
-
+            console.log(tabCell)
+            var status = "Pending"
             if (j == 5) {
-                let buttonStat = document.createElement("button");
+                // let buttonStat = document.createElement("span");
 
                 if (objlist[i][col[j]] == 0) {
-                    buttonStat.innerHTML = "Start"
-                    buttonStat.onclick = function () { console.log("btn " + i) };
+                    status = "Pending"
+                    // buttonStat.innerHTML = "Start"
+                    // buttonStat.onclick = function () { console.log("btn " + i) };
                 }
                 if (objlist[i][col[j]] == 1) {
-                    buttonStat.innerHTML = "In Progress"
+                    status = "In Progress"
+
+                    // buttonStat.innerHTML = "In Progress"
                     // buttonStat.onclick = function(){buttonStat.innerHTML = "Finish"};
                 }
                 if (objlist[i][col[j]] == 2) {
-                    buttonStat.innerHTML = "Finish"
-                    buttonStat.disabled = "true"
+                    status = "Finished"
+
+                    // buttonStat.innerHTML = "Finish"
+                    // buttonStat.disabled = "true"
 
                 }
-                console.log(buttonStat)
-                tabCell.appendChild(buttonStat);
+                tabCell.innerHTML = status
+                // console.log(buttonStat)
+                // tabCell.appendChild(buttonStat);
                 console.log(tabCell)
-                buttonStat = null
+                // buttonStat = null
             } else {
                 tabCell.innerHTML = objlist[i][col[j]];
             }
@@ -91,8 +100,11 @@ function fetchCompleted(objlist) {
     }
 
     let divContainer = document.getElementById("showData");
+    let divMemberContainer = document.getElementById("showMemberData");
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
+    divMemberContainer.innerHTML = "";
+    divMemberContainer.appendChild(memberTable);
 
 }
 
@@ -111,6 +123,7 @@ firebase.auth().onAuthStateChanged((currentUser) => {
 });
 
 
+var taskid = 111;
 function saveTask() {
 
     const tname = document.getElementById('tname').value;
@@ -120,8 +133,8 @@ function saveTask() {
     const tend = document.getElementById('tend').value;
 
     console.log()
-
-    let task = { emailid: temail, name: tname, desc: tdesc, hrs: new Date(tend).getHours() - new Date(tstart).getHours(), tpay: "20", action: "0" };
+    taskid++;
+    let task = { tid:taskid,emailid: temail, name: tname, desc: tdesc, hrs: new Date(tend).getHours() - new Date(tstart).getHours(), tpay: "20", action: "0" };
 
     addData(databaseName, task, function () {
         let url = "admin.html";
@@ -131,3 +144,5 @@ function saveTask() {
 
 
 }
+
+//
