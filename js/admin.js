@@ -1,5 +1,5 @@
 let taskStatus = 0;
-
+var taskid = 0;
 // new modal - admin side
 function modalNew() {
     let url = "modal.html";
@@ -107,6 +107,7 @@ function fetchTaskCompleted(objlist) {
 
         tr = table.insertRow(-1);
 
+        taskid = objlist[i]['tid'];
         for (let j = 0; j <= col.length; j++) {
             let tabCell = tr.insertCell(-1);
             // console.log(tabCell)
@@ -165,6 +166,7 @@ function fetchTaskCompleted(objlist) {
             }
 
         }
+       
     }
 
 
@@ -196,7 +198,7 @@ firebase.auth().onAuthStateChanged((currentUser) => {
 });
 
 
-var taskid = 111;
+
 function saveTask() {
 
     const tname = document.getElementById('tname').value;
@@ -205,10 +207,8 @@ function saveTask() {
     const tstart = document.getElementById('tstart').value;
     const tend = document.getElementById('tend').value;
 
-    console.log()
     taskid++;
     let task = { tid: taskid,emailid: temail, name: tname, desc: tdesc, hrs: new Date(tend).getHours() - new Date(tstart).getHours(), tpay: "20", action: "0" };
-
     addData(databaseName, task, function () {
         let url = "admin.html";
         window.location.assign(url);
