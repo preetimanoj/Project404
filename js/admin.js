@@ -28,29 +28,76 @@ function cancelTask() {
 // }
 
 
-function memberReadData(databaseName, email) {
+
+
+function adminReadData(databaseName) {
     let objlist = []
+    console.log("db",databaseName)
+    
     db.collection(databaseName).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            //            console.log(doc.data())
-            // if (doc.data().emailid === email) {
+            if(databaseName == "UserDatabase" && doc.data().role == "member"){
                 objlist.push(doc.data())
-            // }
+            } 
+           else{
+            objlist.push(doc.data())
+           }
         });
         console.log("objlist",objlist)
-        fetchCompleted(objlist);
+
+        if(databaseName == "UserDatabase"){
+            fetchMemberCompleted(objlist);
+        }else{
+            fetchTaskCompleted(objlist);
+        }
+       
     });
 }
 
 
+function fetchMemberCompleted(objlist) {
+    let userCol = ['emailid', 'role',];
+    let userColName = ['Email Id', 'Role',];
+
+    let memberTable = document.createElement("table");
+    memberTable.classList.add("table");
+    let mtr = memberTable.insertRow(-1);   
+    
+    for (let i = 0; i < userCol.length; i++) {
+        let th = document.createElement("th");      
+        th.innerHTML = userColName[i];
+        mtr.appendChild(th);
+    }
+
+    for (let i = 0; i < objlist.length; i++) {
+        mtr = memberTable.insertRow(-1);
+        for (let j = 0; j < userCol.length; j++) {
+            let tabCell = mtr.insertCell(-1);
+            console.log(tabCell)
+            tabCell.innerHTML = objlist[i][userCol[j]];
+            
+        }
+    }
+
+    let divMemberContainer = document.getElementById("showMemberData");
+    divMemberContainer.innerHTML = "";
+    divMemberContainer.appendChild(memberTable);
+
+}
+
 // var buttonStat = document.createElement("button"); //button
-function fetchCompleted(objlist) {
+function fetchTaskCompleted(objlist) {
     let col = ['name', 'desc', 'emailid', 'hrs', 'tpay', 'action'];
     let colName = ['Task Name', 'Description', 'User Email', 'Hours Worked', '  Total Pay', 'Status'];
 
+   
     let table = document.createElement("table");
+
     table.classList.add("table");
-    let tr = table.insertRow(-1);                   // TABLE ROW.
+    let tr = table.insertRow(-1);   
+  
+
+  
 
     for (let i = 0; i < col.length; i++) {
         let th = document.createElement("th");      // TABLE HEADER.
@@ -99,12 +146,15 @@ function fetchCompleted(objlist) {
         }
     }
 
+
+
+
+   
     let divContainer = document.getElementById("showData");
-    let divMemberContainer = document.getElementById("showMemberData");
+   
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
-    divMemberContainer.innerHTML = "";
-    divMemberContainer.appendChild(memberTable);
+   
 
 }
 
@@ -113,7 +163,9 @@ firebase.auth().onAuthStateChanged((currentUser) => {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         console.log(currentUser.email)
-        memberReadData(databaseName, currentUser.email)
+        adminReadData("UserDatabase")
+        // memberReadData("UserDatabase", currentUser.email)
+        adminReadData(databaseName )
 
     } else {
         console.log("User is signed out");
@@ -133,8 +185,8 @@ function saveTask() {
     const tend = document.getElementById('tend').value;
 
     console.log()
-    taskid++;
-    let task = { tid:taskid,emailid: temail, name: tname, desc: tdesc, hrs: new Date(tend).getHours() - new Date(tstart).getHours(), tpay: "20", action: "0" };
+    // taskid++;
+    let task = { emailid: temail, name: tname, desc: tdesc, hrs: new Date(tend).getHours() - new Date(tstart).getHours(), tpay: "20", action: "0" };
 
     addData(databaseName, task, function () {
         let url = "admin.html";
