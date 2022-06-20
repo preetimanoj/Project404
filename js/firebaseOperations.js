@@ -15,10 +15,12 @@ const auth = firebase.auth();
 
 const db = firebase.firestore();
 
-function addData(databaseName, jsonObjData) {
+function addData(databaseName, jsonObjData, callback = null) {
     db.collection(databaseName).add(jsonObjData)
         .then((docRef) => {
             console.log("Document written with ID: ", docRef.id);
+            if (callback)
+                callback();
         })
         .catch((error) => {
             console.error("Error adding document: ", error);
