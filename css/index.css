@@ -6,6 +6,10 @@
     }
 
 
+.button{
+    background: lightblue;
+}
+
    #exampleModal{
        top: 70px;
        padding-top: 25px;

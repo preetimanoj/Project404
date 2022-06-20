@@ -73,7 +73,7 @@ function fetchMemberCompleted(objlist) {
         mtr = memberTable.insertRow(-1);
         for (let j = 0; j < userCol.length; j++) {
             let tabCell = mtr.insertCell(-1);
-            console.log(tabCell)
+            // console.log(tabCell)
             tabCell.innerHTML = objlist[i][userCol[j]];
             
         }
@@ -88,7 +88,7 @@ function fetchMemberCompleted(objlist) {
 // var buttonStat = document.createElement("button"); //button
 function fetchTaskCompleted(objlist) {
     let col = ['name', 'desc', 'emailid', 'hrs', 'tpay', 'action'];
-    let colName = ['Task Name', 'Description', 'User Email', 'Hours Worked', '  Total Pay', 'Status'];
+    let colName = ['Task Name', 'Description', 'User Email', 'Hours Worked', 'Total Pay', 'Status','Payment'];
 
    
     let table = document.createElement("table");
@@ -97,7 +97,7 @@ function fetchTaskCompleted(objlist) {
     let tr = table.insertRow(-1);   
                  
 
-    for (let i = 0; i < col.length; i++) {
+    for (let i = 0; i <= col.length; i++) {
         let th = document.createElement("th");      // TABLE HEADER.
         th.innerHTML = colName[i];
         tr.appendChild(th);
@@ -107,20 +107,28 @@ function fetchTaskCompleted(objlist) {
 
         tr = table.insertRow(-1);
 
-        for (let j = 0; j < col.length; j++) {
+        for (let j = 0; j <= col.length; j++) {
             let tabCell = tr.insertCell(-1);
-            console.log(tabCell)
+            // console.log(tabCell)
             var status = "Pending"
+            
+            let buttonStat = document.createElement("button");
+            buttonStat.classList.add("btn");
+            buttonStat.classList.add("button");
+            buttonStat.innerHTML = "Pay"
+            // buttonStat.disabled = "true"
             if (j == 5) {
                 // let buttonStat = document.createElement("span");
 
                 if (objlist[i][col[j]] == 0) {
                     status = "Pending"
+                    buttonStat.disabled = "true"
                     // buttonStat.innerHTML = "Start"
                     // buttonStat.onclick = function () { console.log("btn " + i) };
                 }
                 if (objlist[i][col[j]] == 1) {
                     status = "In Progress"
+                    
 
                     // buttonStat.innerHTML = "In Progress"
                     // buttonStat.onclick = function(){buttonStat.innerHTML = "Finish"};
@@ -129,15 +137,30 @@ function fetchTaskCompleted(objlist) {
                     status = "Finished"
 
                     // buttonStat.innerHTML = "Finish"
-                    // buttonStat.disabled = "true"
-
+                   
+                    buttonStat.innerHTML = "Pay"
                 }
+
                 tabCell.innerHTML = status
                 // console.log(buttonStat)
                 // tabCell.appendChild(buttonStat);
-                console.log(tabCell)
+                // console.log(tabCell,status)
                 // buttonStat = null
-            } else {
+            } 
+           
+            else if(j == 6){
+                // console.log(objlist[i][col[5]],2);
+               if(objlist[i][col[5]] != 2){
+                   console.log("fal")
+                buttonStat.disabled = "false"
+               }
+                buttonStat.onclick = function(){
+                    buttonStat.innerHTML = "Paid"
+                    buttonStat.disabled = "true"
+                };
+                tabCell.appendChild(buttonStat);
+            }
+            else {
                 tabCell.innerHTML = objlist[i][col[j]];
             }
 
