@@ -95,9 +95,7 @@ function fetchTaskCompleted(objlist) {
 
     table.classList.add("table");
     let tr = table.insertRow(-1);   
-  
-
-  
+                 
 
     for (let i = 0; i < col.length; i++) {
         let th = document.createElement("th");      // TABLE HEADER.

@@ -47,6 +47,26 @@ function updateData(columnName, value, actionid) {
     });
 }
 
+// edits from merlin
+function updateStatus(taskId, value) {
+    db.collection(databaseName).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log("for doc id " + doc.id + " email id " + String(doc.data().tid) + " value:" + value);
+            if (String(doc.data().tid) == taskId) {
+                console.log("Updaing doc id " + String(doc.data().tid));
+
+                db.collection(databaseName).doc(doc.id).update({
+                    action: value
+                })
+            } else {
+
+            }
+        });
+    });
+}
+
+//ends
+
 function readData(databaseName) {
     db.collection(databaseName).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {

@@ -51,10 +51,19 @@ function fetchCompleted(objlist) {
 
                 if (objlist[i][col[j]] == 0) {
                     buttonStat.innerHTML = "Start"
-                    buttonStat.onclick = function () { console.log("btn " + i) };
+                    buttonStat.onclick = function () { 
+                        console.log("btn " + i) 
+                        updateStatus(objlist[i].tid, "1")
+                        // console.log(objlist[i].tid)
+                    };
                 }
                 if (objlist[i][col[j]] == 1) {
                     buttonStat.innerHTML = "In Progress"
+                    buttonStat.onclick = function () { 
+                        console.log("btn " + i) 
+                        updateStatus(objlist[i].tid, "2")
+                        // console.log(objlist[i].tid)
+                    };
                     // buttonStat.onclick = function(){buttonStat.innerHTML = "Finish"};
                 }
                 if (objlist[i][col[j]] == 2) {
