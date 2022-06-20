@@ -48,15 +48,15 @@ function updateData(columnName, value, actionid) {
 }
 
 // edits from merlin
-function updateStatus(columnName, value, actionid) {
+function updateStatus(taskId, value) {
     db.collection(databaseName).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            console.log("for doc id " + doc.id + " email id " + doc.data().emailid + " value:" + value);
-            if (String(doc.data().emailid) == String(value)) {
-                console.log("Updaing doc id " + doc.id);
+            console.log("for doc id " + doc.id + " email id " + String(doc.data().tid) + " value:" + value);
+            if (String(doc.data().tid) == taskId) {
+                console.log("Updaing doc id " + String(doc.data().tid));
 
                 db.collection(databaseName).doc(doc.id).update({
-                    action: actionid
+                    action: value
                 })
             } else {
 
