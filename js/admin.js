@@ -48,10 +48,10 @@ function fetchCompleted(objlist) {
 
     let table = document.createElement("table");
     table.classList.add("table");
-    let tr = table.insertRow(-1);                   // TABLE ROW.
+    let tr = table.insertRow(-1);                  
 
     for (let i = 0; i < col.length; i++) {
-        let th = document.createElement("th");      // TABLE HEADER.
+        let th = document.createElement("th");     
         th.innerHTML = col[i];
         tr.appendChild(th);
     }
@@ -109,25 +109,3 @@ firebase.auth().onAuthStateChanged((currentUser) => {
         window.location.assign(url);
     }
 });
-
-
-function saveTask() {
-
-    const tname = document.getElementById('tname').value;
-    const tdesc = document.getElementById('tdesc').value;
-    const temail = document.getElementById('temail').value;
-    const tstart = document.getElementById('tstart').value;
-    const tend = document.getElementById('tend').value;
-
-    console.log()
-
-    let task = { emailid: temail, name: tname, desc: tdesc, hrs: new Date(tend).getHours() - new Date(tstart).getHours(), tpay: "20", action: "0" };
-
-    addData(databaseName, task, function () {
-        let url = "admin.html";
-        window.location.assign(url);
-    })
-
-
-
-}

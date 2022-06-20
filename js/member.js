@@ -51,7 +51,11 @@ function fetchCompleted(objlist) {
 
                 if (objlist[i][col[j]] == 0) {
                     buttonStat.innerHTML = "Start"
-                    buttonStat.onclick = function () { console.log("btn " + i) };
+                    buttonStat.onclick = function () { 
+                        console.log("btn " + i) 
+                        // updateStatus(objlist[i])
+                        // console.log(objlist[i].action)
+                    };
                 }
                 if (objlist[i][col[j]] == 1) {
                     buttonStat.innerHTML = "In Progress"
