@@ -183,8 +183,8 @@ function saveTask() {
     const tend = document.getElementById('tend').value;
 
     console.log()
-    // taskid++;
-    let task = { emailid: temail, name: tname, desc: tdesc, hrs: new Date(tend).getHours() - new Date(tstart).getHours(), tpay: "20", action: "0" };
+    taskid++;
+    let task = { tid: taskid,emailid: temail, name: tname, desc: tdesc, hrs: new Date(tend).getHours() - new Date(tstart).getHours(), tpay: "20", action: "0" };
 
     addData(databaseName, task, function () {
         let url = "admin.html";
